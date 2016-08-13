@@ -12,6 +12,10 @@ using System.Collections;
 using System.Diagnostics;
 using System.Security.Cryptography;
 
+// Steam Account Switcher Developed by UMIQLO
+// Version v1.5
+// Date : 160813
+
 namespace Steam_Account_Switcher
 {
     public partial class frmMain : Form
@@ -67,6 +71,12 @@ namespace Steam_Account_Switcher
                         }
                 }
             }
+            else
+            {
+                //Default Path
+                CreatePathData("setting.xml", "C:\\Program Files (x86)\\Steam");
+                LoadingXml();
+            }
         }
 
         private void CheckPath()
@@ -114,7 +124,16 @@ namespace Steam_Account_Switcher
 
             //4.創建節點path
             XmlElement steamPath = doc.CreateElement("path");
-            steamPath.InnerText = getPath();
+            if (path != null)
+            {
+                steamPath.InnerText = path;
+            }
+            else
+            {
+                steamPath.InnerText = getPath();
+            }
+            
+
 
             //5.將創建的節點，添加到二級節點setting中
             node.AppendChild(steamPath);
@@ -199,25 +218,35 @@ namespace Steam_Account_Switcher
 
         private void ReadAccount()
         {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("account.xml");
-
-            lstAccount.Items.Clear();
-            for (int i = 0; i <= xmlDoc.SelectSingleNode("steam").ChildNodes.Count - 1; i++)
+            string FileName = "account.xml";
+            if (System.IO.File.Exists(FileName))
             {
-                string user, pw, id;
+                lstAccount.Enabled = true;
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(FileName);
 
-                user = xmlDoc.SelectNodes("//username")[i].InnerText;
-                lstAccount.Items.Add(user);
+                lstAccount.Items.Clear();
+                for (int i = 0; i <= xmlDoc.SelectSingleNode("steam").ChildNodes.Count - 1; i++)
+                {
+                    string user, pw, id;
 
-                pw = xmlDoc.SelectNodes("//password")[i].InnerText;
+                    user = xmlDoc.SelectNodes("//username")[i].InnerText;
+                    lstAccount.Items.Add(user);
 
-                id = xmlDoc.SelectNodes("//account/@id")[i].Value;
-                count = Convert.ToInt32(id);
+                    pw = xmlDoc.SelectNodes("//password")[i].InnerText;
+
+                    id = xmlDoc.SelectNodes("//account/@id")[i].Value;
+                    count = Convert.ToInt32(id);
+                }
+                txtUserName.Text = "";
+                txtPassword.Text = "";
+                toolStripStatusLabel1.Text = "";
             }
-            txtUserName.Text = "";
-            txtPassword.Text = "";
-            toolStripStatusLabel1.Text = "";
+            else
+            {
+                lstAccount.Enabled = false;
+            }
+                        
         }
 
         private bool CheckAccount(string selectUsername)
