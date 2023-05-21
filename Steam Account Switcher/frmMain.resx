@@ -135,7 +135,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtUserName.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBox_AddAccount</value>
   </data>
   <data name="&gt;&gt;txtUserName.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -156,33 +156,33 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtPassword.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBox_AddAccount</value>
   </data>
   <data name="&gt;&gt;txtPassword.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="lstAccount.ItemHeight" type="System.Int32, mscorlib">
+  <data name="lstAccounts.ItemHeight" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="lstAccount.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lstAccounts.Location" type="System.Drawing.Point, System.Drawing">
     <value>264, 55</value>
   </data>
-  <data name="lstAccount.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lstAccounts.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 180</value>
   </data>
-  <data name="lstAccount.TabIndex" type="System.Int32, mscorlib">
+  <data name="lstAccounts.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;lstAccount.Name" xml:space="preserve">
-    <value>lstAccount</value>
+  <data name="&gt;&gt;lstAccounts.Name" xml:space="preserve">
+    <value>lstAccounts</value>
   </data>
-  <data name="&gt;&gt;lstAccount.Type" xml:space="preserve">
+  <data name="&gt;&gt;lstAccounts.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lstAccount.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lstAccounts.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lstAccount.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lstAccounts.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="lbUserName.AutoSize" type="System.Boolean, mscorlib">
@@ -192,7 +192,7 @@
     <value>6, 31</value>
   </data>
   <data name="lbUserName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 16</value>
+    <value>64, 16</value>
   </data>
   <data name="lbUserName.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -207,7 +207,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbUserName.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBox_AddAccount</value>
   </data>
   <data name="&gt;&gt;lbUserName.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -219,7 +219,7 @@
     <value>6, 77</value>
   </data>
   <data name="lbPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 16</value>
+    <value>60, 16</value>
   </data>
   <data name="lbPassword.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -234,16 +234,16 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbPassword.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBox_AddAccount</value>
   </data>
   <data name="&gt;&gt;lbPassword.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="btnSaveToList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 102</value>
+    <value>9, 102</value>
   </data>
   <data name="btnSaveToList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 32</value>
+    <value>231, 32</value>
   </data>
   <data name="btnSaveToList.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -258,40 +258,40 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnSaveToList.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBox_AddAccount</value>
   </data>
   <data name="&gt;&gt;btnSaveToList.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="groupBox_AddAccount.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 39</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="groupBox_AddAccount.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 139</value>
   </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="groupBox_AddAccount.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
+  <data name="groupBox_AddAccount.Text" xml:space="preserve">
     <value>Add Steam Account</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;groupBox_AddAccount.Name" xml:space="preserve">
+    <value>groupBox_AddAccount</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;groupBox_AddAccount.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox_AddAccount.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;groupBox_AddAccount.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="btnLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 246</value>
+    <value>419, 246</value>
   </data>
   <data name="btnLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 32</value>
+    <value>91, 32</value>
   </data>
   <data name="btnLogin.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -312,10 +312,10 @@
     <value>6</value>
   </data>
   <data name="btnSelectPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 62</value>
+    <value>6, 62</value>
   </data>
   <data name="btnSelectPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 32</value>
+    <value>234, 32</value>
   </data>
   <data name="btnSelectPath.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -330,12 +330,12 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnSelectPath.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+    <value>groupBox_SteamPath</value>
   </data>
   <data name="&gt;&gt;btnSelectPath.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="folderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="txtPath.Location" type="System.Drawing.Point, System.Drawing">
@@ -354,146 +354,149 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtPath.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+    <value>groupBox_SteamPath</value>
   </data>
   <data name="&gt;&gt;txtPath.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="groupBox_SteamPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 184</value>
   </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="groupBox_SteamPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 100</value>
   </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+  <data name="groupBox_SteamPath.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
+  <data name="groupBox_SteamPath.Text" xml:space="preserve">
     <value>Steam Path</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;groupBox_SteamPath.Name" xml:space="preserve">
+    <value>groupBox_SteamPath</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+  <data name="&gt;&gt;groupBox_SteamPath.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox_SteamPath.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;groupBox_SteamPath.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>195, 17</value>
+  <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>180, 17</value>
   </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="menuStrip1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+  <data name="MenuStrip.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="developByUMIQLOToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 22</value>
+  <data name="DevelopByUMIQLOToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
   </data>
-  <data name="developByUMIQLOToolStripMenuItem.Text" xml:space="preserve">
+  <data name="DevelopByUMIQLOToolStripMenuItem.Text" xml:space="preserve">
     <value>Develop By UMIQLO</value>
   </data>
-  <data name="aboutBToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 20</value>
+  <data name="RemakeByMaxwestToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
   </data>
-  <data name="aboutBToolStripMenuItem.Text" xml:space="preserve">
+  <data name="RemakeByMaxwestToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remake By maxwest</value>
+  </data>
+  <data name="AboutBToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="AboutBToolStripMenuItem.Text" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="exitXToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
+  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 20</value>
   </data>
-  <data name="exitXToolStripMenuItem.Text" xml:space="preserve">
+  <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="MenuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>521, 24</value>
+  <data name="MenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>523, 24</value>
   </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+  <data name="MenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
+  <data name="MenuStrip.Text" xml:space="preserve">
     <value>menuStrip1</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="&gt;&gt;MenuStrip.Name" xml:space="preserve">
+    <value>MenuStrip</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+  <data name="&gt;&gt;MenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;MenuStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;MenuStrip.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="btnRefresh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>326, 27</value>
+  <data name="RefreshButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>264, 18</value>
   </data>
-  <data name="btnRefresh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 23</value>
+  <data name="RefreshButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 32</value>
   </data>
-  <data name="btnRefresh.TabIndex" type="System.Int32, mscorlib">
+  <data name="RefreshButton.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="btnRefresh.Text" xml:space="preserve">
+  <data name="RefreshButton.Text" xml:space="preserve">
     <value>Refresh</value>
   </data>
-  <data name="&gt;&gt;btnRefresh.Name" xml:space="preserve">
-    <value>btnRefresh</value>
+  <data name="&gt;&gt;RefreshButton.Name" xml:space="preserve">
+    <value>RefreshButton</value>
   </data>
-  <data name="&gt;&gt;btnRefresh.Type" xml:space="preserve">
+  <data name="&gt;&gt;RefreshButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnRefresh.Parent" xml:space="preserve">
+  <data name="&gt;&gt;RefreshButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnRefresh.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;RefreshButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>314, 17</value>
+  <metadata name="StatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>288, 17</value>
   </metadata>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 17</value>
+  <data name="ToolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 17</value>
   </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+  <data name="ToolStripStatusLabel.Text" xml:space="preserve">
     <value>Steam Account Switcher</value>
   </data>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="StatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 286</value>
   </data>
-  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>521, 22</value>
+  <data name="StatusStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>523, 22</value>
   </data>
-  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="StatusStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
   </data>
-  <data name="statusStrip1.Text" xml:space="preserve">
-    <value>statusStrip1</value>
+  <data name="&gt;&gt;StatusStrip.Name" xml:space="preserve">
+    <value>StatusStrip</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
+  <data name="&gt;&gt;StatusStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;StatusStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;StatusStrip.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="btnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>419, 27</value>
+    <value>423, 18</value>
   </data>
   <data name="btnDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 23</value>
+    <value>87, 32</value>
   </data>
   <data name="btnDelete.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -514,10 +517,10 @@
     <value>2</value>
   </data>
   <data name="btnForceClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 246</value>
+    <value>264, 246</value>
   </data>
   <data name="btnForceClose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 32</value>
+    <value>149, 32</value>
   </data>
   <data name="btnForceClose.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -537,62 +540,62 @@
   <data name="&gt;&gt;btnForceClose.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>434, 17</value>
+  <metadata name="NotifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>398, 17</value>
   </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+  <metadata name="ContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>506, 17</value>
   </metadata>
   <data name="ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="ToolStripMenuItem.Text" xml:space="preserve">
     <value>Developed By UMIQLO</value>
   </data>
   <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
     <value>About</value>
   </data>
   <data name="RestoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="RestoreToolStripMenuItem.Text" xml:space="preserve">
     <value>Restore</value>
   </data>
   <data name="HideToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="HideToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide</value>
   </data>
-  <data name="ExitToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+  <data name="ExitXToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
   </data>
-  <data name="ExitToolStripMenuItem1.Text" xml:space="preserve">
+  <data name="ExitXToolStripMenuItem.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 136</value>
+  <data name="ContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 114</value>
   </data>
-  <data name="&gt;&gt;contextMenuStrip1.Name" xml:space="preserve">
-    <value>contextMenuStrip1</value>
+  <data name="&gt;&gt;ContextMenuStrip.Name" xml:space="preserve">
+    <value>ContextMenuStrip</value>
   </data>
-  <data name="&gt;&gt;contextMenuStrip1.Type" xml:space="preserve">
+  <data name="&gt;&gt;ContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="notifyIcon1.Text" xml:space="preserve">
+  <data name="NotifyIcon.Text" xml:space="preserve">
     <value>Steam 帳戶轉換器</value>
   </data>
-  <data name="notifyIcon1.Visible" type="System.Boolean, mscorlib">
+  <data name="NotifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>521, 308</value>
+    <value>523, 308</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft JhengHei, 9pt</value>
@@ -606,40 +609,46 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Steam Account Switcher</value>
   </data>
-  <data name="&gt;&gt;folderBrowserDialog1.Name" xml:space="preserve">
-    <value>folderBrowserDialog1</value>
+  <data name="&gt;&gt;folderBrowserDialog.Name" xml:space="preserve">
+    <value>folderBrowserDialog</value>
   </data>
-  <data name="&gt;&gt;folderBrowserDialog1.Type" xml:space="preserve">
+  <data name="&gt;&gt;folderBrowserDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;aboutBToolStripMenuItem.Name" xml:space="preserve">
-    <value>aboutBToolStripMenuItem</value>
+  <data name="&gt;&gt;AboutBToolStripMenuItem.Name" xml:space="preserve">
+    <value>AboutBToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;aboutBToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;AboutBToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;developByUMIQLOToolStripMenuItem.Name" xml:space="preserve">
-    <value>developByUMIQLOToolStripMenuItem</value>
+  <data name="&gt;&gt;DevelopByUMIQLOToolStripMenuItem.Name" xml:space="preserve">
+    <value>DevelopByUMIQLOToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;developByUMIQLOToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;DevelopByUMIQLOToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;exitXToolStripMenuItem.Name" xml:space="preserve">
-    <value>exitXToolStripMenuItem</value>
+  <data name="&gt;&gt;RemakeByMaxwestToolStripMenuItem.Name" xml:space="preserve">
+    <value>RemakeByMaxwestToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;exitXToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;RemakeByMaxwestToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripStatusLabel1.Name" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
+  <data name="&gt;&gt;ExitToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExitToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStripStatusLabel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;ExitToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripStatusLabel.Name" xml:space="preserve">
+    <value>ToolStripStatusLabel</value>
+  </data>
+  <data name="&gt;&gt;ToolStripStatusLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;notifyIcon1.Name" xml:space="preserve">
-    <value>notifyIcon1</value>
+  <data name="&gt;&gt;NotifyIcon.Name" xml:space="preserve">
+    <value>NotifyIcon</value>
   </data>
-  <data name="&gt;&gt;notifyIcon1.Type" xml:space="preserve">
+  <data name="&gt;&gt;NotifyIcon.Type" xml:space="preserve">
     <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ToolStripMenuItem.Name" xml:space="preserve">
@@ -666,10 +675,10 @@
   <data name="&gt;&gt;HideToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ExitToolStripMenuItem1.Name" xml:space="preserve">
-    <value>ExitToolStripMenuItem1</value>
+  <data name="&gt;&gt;ExitXToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExitXToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;ExitToolStripMenuItem1.Type" xml:space="preserve">
+  <data name="&gt;&gt;ExitXToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

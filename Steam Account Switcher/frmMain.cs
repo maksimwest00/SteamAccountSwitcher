@@ -1,18 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Xml;
-using System.IO;
-using System.Collections;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Security.Cryptography;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
-// Steam Account Switcher Developed by UMIQLO
+// Steam Account Switcher Developed by UMIQLO remake by maxwest
 // Version v1.5
 // Date : 160813
 
@@ -20,318 +15,274 @@ namespace Steam_Account_Switcher
 {
     public partial class frmMain : Form
     {
-        private string path;
-        private string getPath()
+        #region Services 
+        public IFileService FileService { get; set; }
+        public IDialogService DialogService { get; set; }
+        #endregion
+
+        #region Collection Accs
+        private ObservableCollection<Account> AccountsCollection;
+        #endregion
+
+        #region Properties
+        private string _path;
+        public string Path
         {
-            return path;
+            get 
+            { 
+                return this._path; 
+            }
+            set 
+            { 
+                this._path = value; 
+            }
         }
-        private void setPath(string path)
-        {
-            this.path = path;
-        }
-        int count = 0;
-        string user = "沒有", pw = "沒有", id = "沒有";
-        bool pathCorrect;
+        public bool pathCorrect;
+        #endregion
+
+        #region Resources
+        public string AccountFilePath { get; } = "accounts.json";
+        public string SettingsFilePath { get; } = "settings.json";
+        public System.Drawing.Icon AppIcon { get; } = Properties.Resources.SAS;
+        #endregion
+
+        #region Constructor
         public frmMain()
         {
             InitializeComponent();
-            this.Icon = Steam_Account_Switcher.Properties.Resources.SAS;
-            notifyIcon1.Icon = Steam_Account_Switcher.Properties.Resources.SAS;
-            LoadingXml();
-            if (System.IO.File.Exists("account.xml"))
+
+            this.DialogService = new DefaultDialogService();
+            this.FileService = new JsonFileService();
+
+            this.Icon = this.AppIcon;
+            this.NotifyIcon.Icon = this.AppIcon;
+
+            this.LoadingJsonSettings();
+
+            this.AccountsCollection = new ObservableCollection<Account>();
+            this.AccountsCollection.CollectionChanged += AccountsCollection_CollectionChanged;
+
+            if (File.Exists(this.AccountFilePath))
             {
-                ReadAccount();
+                ReadAccountsJson();
             }
-            count = lstAccount.Items.Count;
-            id = count.ToString();
-
-        }
-        private void btnSaveToList_Click(object sender, EventArgs e)
-        {
-            AddAccount();
         }
 
-        private void LoadingXml()
+        private void AccountsCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            string FileName = "setting.xml";
-            if (System.IO.File.Exists(FileName))
+            this.lstAccounts.DataSource = null;
+            this.lstAccounts.DataSource = this.AccountsCollection;
+            this.lstAccounts.DisplayMember = "username";
+            this.lstAccounts.Refresh();
+        }
+
+        private void ReadAccountsJson()
+        {
+            string FileName = this.AccountFilePath;
+            if (File.Exists(FileName))
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(FileName);
-                XmlNode child = doc.SelectSingleNode("/setting/path");
-                if (child != null)
+                this.lstAccounts.Enabled = true;
+                List<Account> AccountsJson = this.FileService.Read<List<Account>>(FileName);
+                AccountsCollection_Clear();
+                foreach (var acc in AccountsJson)
                 {
-                    XmlNodeReader nr = new XmlNodeReader(child);
-                    while (nr.Read())
-                        if (nr.Value != "")
-                        {
-                            setPath(nr.Value);
-                            CheckPath();
-                            txtPath.Text = getPath();
-                        }
+                    this.AccountsCollection.Add(acc);
+                }
+                ClearTextBoxes();
+                this.ToolStripStatusLabel.Text = string.Empty;
+            }
+            else
+            {
+                this.lstAccounts.Enabled = false;
+            }
+        }
+        private void AccountsCollection_Clear()
+        {
+            this.AccountsCollection.Clear();
+        }
+        #endregion
+
+        #region Start Programm
+        private void LoadingJsonSettings()
+        {
+            string FileName = this.SettingsFilePath;
+            if (File.Exists(FileName))
+            {
+                SettingsJson SettingsJson = this.FileService.Read<SettingsJson>(FileName);
+                if (!string.IsNullOrEmpty(SettingsJson.settings.path))
+                {
+                    this.Path = SettingsJson.settings.path;
+                    CheckPath();
+                    this.txtPath.Text = this.Path;
                 }
             }
             else
             {
-                //Default Path
-                CreatePathData("setting.xml", "C:\\Program Files (x86)\\Steam");
-                LoadingXml();
+                CreatePathData(this.SettingsFilePath, "C:\\Program Files (x86)\\Steam");
+                LoadingJsonSettings();
             }
         }
+        #endregion
 
+        #region Settings
         private void CheckPath()
         {
-            if (System.IO.File.Exists(getPath() + @"\steam.exe") && System.IO.File.Exists(getPath() + @"\Steam.dll"))
+            if (File.Exists(this.Path + @"\steam.exe") && File.Exists(this.Path + @"\Steam.dll"))
             {
-                pathCorrect = true;
+                this.pathCorrect = true;
             }
             else
             {
-                MessageBox.Show("Steam Path Incorrect");
-                pathCorrect = false;
+                this.DialogService.ShowMessage("Steam Path Incorrect");
+                this.pathCorrect = false;
+            }
+        }
+        #endregion
+
+        #region Account Action
+        private void AddAccountToCollection()
+        {
+            this.AccountsCollection.Add(new Account
+            {
+                username = this.txtUserName.Text,
+                password = this.txtPassword.Text
+            });
+        }
+        private void AddAccount()
+        {
+            if (this.txtUserName.Text != "" && this.txtPassword.Text != "")
+            {
+                if (!File.Exists(this.AccountFilePath))
+                {
+                    AddAccountToCollection();
+                    SaveAddedAccount();
+                }
+                else
+                {
+                    bool chk;
+                    chk = CheckAccount(this.txtUserName.Text);
+                    if (chk == false)
+                    {
+                        return;
+                    }
+                    AddAccountToCollection();
+                    SaveAddedAccount();
+                }
+            }
+            else
+            {
+                this.DialogService.ShowMessage("Please field in the Username and Password");
             }
         }
 
+        private void SaveAddedAccount()
+        {
+            SaveData();
+            this.DialogService.ShowMessage("You added " + this.txtUserName.Text);
+            this.ToolStripStatusLabel.Text = "You added " + this.txtUserName.Text;
+            ClearTextBoxes();
+        }
+
+        private void ClearTextBoxes()
+        {
+            this.txtUserName.Text = string.Empty;
+            this.txtPassword.Text = string.Empty;
+        }
+
+        private void SaveData()
+        {
+            this.FileService.Save(this.AccountFilePath, this.AccountsCollection);
+        }
+        #endregion
+
+        #region Buttons Actions
+        private void btnSaveToList_Click(object sender, EventArgs e)
+        {
+            AddAccount();
+        }
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                txtPath.Text = folderBrowserDialog1.SelectedPath;
-                setPath(folderBrowserDialog1.SelectedPath);
+                this.txtPath.Text = this.folderBrowserDialog.SelectedPath;
+                this.Path = this.folderBrowserDialog.SelectedPath;
                 CheckPath();
-                CreatePathData("setting.xml", getPath());
+                CreatePathData(this.SettingsFilePath, "C:\\Program Files (x86)\\Steam");
             }
         }
+        #endregion
 
         private void exitXToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExitMainForm();
         }
-
         private void aboutBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This Tool is Developed By UMIQLO");
+            this.DialogService.ShowMessage("This Tool is Developed By UMIQLO and Remaked by maxwest !!");
         }
-
         private void CreatePathData(string Filename, string path)
         {
-            XmlDocument doc = new XmlDocument();
-            XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            doc.AppendChild(docNode);
-
-            //3.創建子節點setting
-            XmlElement node = doc.CreateElement("setting");
-
-            //4.創建節點path
-            XmlElement steamPath = doc.CreateElement("path");
-            if (path != null)
+            SettingsJson settingsJson = new SettingsJson()
             {
-                steamPath.InnerText = path;
-            }
-            else
-            {
-                steamPath.InnerText = getPath();
-            }
-            
-
-
-            //5.將創建的節點，添加到二級節點setting中
-            node.AppendChild(steamPath);
-
-            //6.將二級節點添加到根節點中去
-            doc.AppendChild(node);
-
-            StreamWriter outStream = System.IO.File.CreateText(Filename);
-
-            doc.Save(outStream);
-            outStream.Close();
-        }
-
-        private void AddAccount()
-        {
-            count++;
-            if (txtUserName.Text != "" && txtPassword.Text != "")
-            {
-                if (!System.IO.File.Exists("account.xml"))
+                settings = new Settings()
                 {
-                    XmlDocument doc = new XmlDocument();
-                    XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-                    doc.AppendChild(docNode);
-                    //建立根節點
-                    XmlElement steam = doc.CreateElement("steam");
-                    doc.AppendChild(steam);
-                    //建立子節點
-                    XmlElement account = doc.CreateElement("account");
-                    account.SetAttribute("id", count.ToString());//設定屬性
-
-                    //加入至steam節點底下
-                    steam.AppendChild(account);
-
-                    XmlElement username = doc.CreateElement("username");
-                    username.InnerText = (txtUserName.Text);
-                    XmlElement password = doc.CreateElement("password");
-                    password.InnerText = (txtPassword.Text);
-                    //加入至members節點底下
-                    account.AppendChild(username);
-                    account.AppendChild(password);
-                    doc.Save("account.xml");
-                    MessageBox.Show("You added " + txtUserName.Text);
-                    toolStripStatusLabel1.Text = "You added " + txtUserName.Text;
+                    path = path is null ? this.Path : path,
                 }
-                else
-                {
-                    bool chk;
-                    chk = CheckAccount(txtUserName.Text);
-                    if (chk == false)
-                    {
-                        return;
-                    }
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load("account.xml");
-                    XmlNode node = doc.SelectSingleNode("steam");//選擇節點
-                    if (node == null)
-                        return;
-
-                    XmlElement account = doc.CreateElement("account");
-                    account.SetAttribute("id", count.ToString());//設定屬性
-                    node.AppendChild(account);
-
-                    XmlElement username = doc.CreateElement("username");
-                    username.InnerText = (txtUserName.Text);
-                    XmlElement password = doc.CreateElement("password");
-                    password.InnerText = (txtPassword.Text);
-                    //加入至members節點底下
-                    account.AppendChild(username);
-                    account.AppendChild(password);
-
-                    doc.Save("account.xml");
-                    MessageBox.Show("You added " + txtUserName.Text);
-                    toolStripStatusLabel1.Text = "You added " + txtUserName.Text;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please field in the Username and Password");
-            }
-            ReadAccount();
+            };
+            this.FileService.Save(Filename, settingsJson);
         }
-
-        private void ReadAccount()
-        {
-            string FileName = "account.xml";
-            if (System.IO.File.Exists(FileName))
-            {
-                lstAccount.Enabled = true;
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(FileName);
-
-                lstAccount.Items.Clear();
-                for (int i = 0; i <= xmlDoc.SelectSingleNode("steam").ChildNodes.Count - 1; i++)
-                {
-                    string user, pw, id;
-
-                    user = xmlDoc.SelectNodes("//username")[i].InnerText;
-                    lstAccount.Items.Add(user);
-
-                    pw = xmlDoc.SelectNodes("//password")[i].InnerText;
-
-                    id = xmlDoc.SelectNodes("//account/@id")[i].Value;
-                    count = Convert.ToInt32(id);
-                }
-                txtUserName.Text = "";
-                txtPassword.Text = "";
-                toolStripStatusLabel1.Text = "";
-            }
-            else
-            {
-                lstAccount.Enabled = false;
-            }
-                        
-        }
-
         private bool CheckAccount(string selectUsername)
         {
-            bool re = true;
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("account.xml");
-
-            for (int i = 0; i <= xmlDoc.SelectSingleNode("steam").ChildNodes.Count - 1; i++)
+            bool check = true;
+            foreach (Account acc in this.AccountsCollection)
             {
-                user = xmlDoc.SelectNodes("//username")[i].InnerText;
-                pw = xmlDoc.SelectNodes("//password")[i].InnerText;
-                id = xmlDoc.SelectNodes("//account/@id")[i].Value;
-                if (user == selectUsername)
+                if (acc.username == selectUsername)
                 {
-                    MessageBox.Show("Account is saved to the list");
-                    re = false;
+                    this.DialogService.ShowMessage("Account is saved to the list");
+                    check = false;
                     break;
                 }
             }
-            return re;
+            return check;
         }
-
-        private void lstAccount_SelectedIndexChanged(object sender, EventArgs e)
+        private void LstAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selected = lstAccount.SelectedItem.ToString();
-            //txtUserName.Text = selected; 測試用
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("account.xml");
-
-            for (int i = 0; i <= xmlDoc.SelectSingleNode("steam").ChildNodes.Count - 1; i++)
+            if (this.lstAccounts.SelectedItem != null)
             {
-                user = xmlDoc.SelectNodes("//username")[i].InnerText;
-                pw = xmlDoc.SelectNodes("//password")[i].InnerText;
-                id = xmlDoc.SelectNodes("//account/@id")[i].Value;
-                if (user == selected)
-                {
-                    toolStripStatusLabel1.Text = "You are selected " + selected;
-                    return;
-                }
+                Account acc = (Account)this.lstAccounts.SelectedItem;
+                this.ToolStripStatusLabel.Text = "You are selected " + acc.username;
             }
         }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void BtnRefresh_Click(object sender, EventArgs e)
         {
-            ReadAccount();
+            ReadAccountsJson();
         }
-
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (user != "沒有" && pw != "沒有" && id != "沒有")
+            DialogResult dialogResult = this.DialogService.ShowMessage("Do you want to remove it?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to remove it?", "Warning", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load("account.xml");
-
-                    XmlNodeList nodes = doc.SelectNodes("//account[@id='" + id + "']");
-                    for (int i = nodes.Count - 1; i >= 0; i--)
-                    {
-                        nodes[i].ParentNode.RemoveChild(nodes[i]);
-                    }
-
-                    doc.Save("account.xml");
-                    ReadAccount();
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    return;
-                }
+                this.AccountsCollection.Remove((Account)this.lstAccounts.SelectedItem);
+                SaveData();
+                ReadAccountsJson();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
             }
         }
-
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void BtnLogin_Click(object sender, EventArgs e)
         {
-            if (pathCorrect == true)
+            if (this.pathCorrect == true)
             {
-                if (user != "沒有" && pw != "沒有" && id != "沒有")
+                if (this.lstAccounts.SelectedItem != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you want to login?\n\nAccount：" + user, "Warning", MessageBoxButtons.YesNo);
+                    Account acc = (Account)this.lstAccounts.SelectedItem;
+                    DialogResult dialogResult = this.DialogService.ShowMessage("Are you want to login?\n\nAccount：" + acc.username, "Warning", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         ForceClose();
-                        Process.Start(getPath() + @"\steam.exe", "-login " + user + " " + pw);
+                        Process.Start(this.Path + @"\steam.exe", "-login " + acc.username + " " + acc.password);
                         HideMainForm();
                     }
                     else if (dialogResult == DialogResult.No)
@@ -341,16 +292,15 @@ namespace Steam_Account_Switcher
                 }
                 else
                 {
-                    MessageBox.Show("Select an Account");
+                    this.DialogService.ShowMessage("Select an Account");
                 }
 
             }
             else if (pathCorrect == false)
             {
-                MessageBox.Show("Path Incorrect");
+                this.DialogService.ShowMessage("Path Incorrect");
             }
         }
-
         private void ForceClose()
         {
             Process[] processes = Process.GetProcessesByName("Steam");
@@ -359,36 +309,55 @@ namespace Steam_Account_Switcher
                 process.Kill();
             }
         }
-
-        private void btnForceClose_Click(object sender, EventArgs e)
+        private void BtnForceClose_Click(object sender, EventArgs e)
         {
             ForceClose();
         }
 
-        private void ExitMainForm()
-        {
-            if (MessageBox.Show("Close Steam Account Switcher？", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
-            {
-                this.notifyIcon1.Visible = false;
-                this.Close();
-                this.Dispose();
-                Application.Exit();
-            }
-        }
-
-        private void HideMainForm()
-        {
-            this.Hide();
-        }
-
+        #region MainForm Actions
         private void ShowMainForm()
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
             this.Activate();
         }
+        private void HideMainForm()
+        {
+            this.Hide();
+        }
+        private void ExitMainForm()
+        {
+            if (this.DialogService.ShowMessage("Close Steam Account Switcher？", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+            {
+                this.NotifyIcon.Visible = false;
+                this.Close();
+                this.Dispose();
+                Application.Exit();
+            }
+        }
+        #endregion
 
-        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        #region NotifyMenu Actions
+        private void RestoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowMainForm();
+        }
+        private void HideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HideMainForm();
+        }
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExitMainForm();
+        }
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.DialogService.ShowMessage("This Tools is Developed By UMIQLO and remake by maxwest !!");
+        }
+        #endregion
+
+        #region NotifyIcon Actions
+        private void NotifyIcon_DoubleClick(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
             {
@@ -400,53 +369,10 @@ namespace Steam_Account_Switcher
                 ShowMainForm();
             }
         }
-
-        private void frmMain_SizeChanged(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                HideMainForm();
-            }
-        }
-
-        private void RestoreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowMainForm();
-        }
-
-        private void HideToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NotifyIcon_Click(object sender, EventArgs e)
         {
             HideMainForm();
         }
-
-        private void ExitToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ExitMainForm();
-        }
-
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("This Tools is Developed By UMIQLO");
-        }
-
-        private void notifyIcon1_DoubleClick_1(object sender, EventArgs e)
-        {
-            ShowMainForm();
-        }
-
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void notifyIcon1_Click(object sender, EventArgs e)
-        {
-            HideMainForm();
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
     }
 }
